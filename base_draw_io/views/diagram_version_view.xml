@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<record id="diagram_version_form_view" model="ir.ui.view">
+        <field name="name">diagram.version.form.view</field>
+        <field name="model">diagram.version</field>
+        <field name="arch" type="xml">
+        	<form string="Diagram Versions" create="0" edit="0">
+	        	<sheet>
+	                <group>
+	                    <field name="name" readonly="True" />
+	                    <field name="create_date" readonly="True" />
+	                    <field name="create_uid" readonly="True" />
+	                    <field name="diagram_xml" readonly="True" />
+	                    <field name="task_id" readonly="True" />
+	                </group>
+	        	</sheet>
+	        </form>
+        </field>
+    </record>
+</odoo>
