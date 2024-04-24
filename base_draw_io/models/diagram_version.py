@@ -9,7 +9,6 @@ class DiagramVersion(models.Model):
 
     name = fields.Char(copy=False, compute="_compute_name", store=True)
     diagram_xml = fields.Text()
-    task_id = fields.Many2one('project.task')
 
     @api.depends('create_date')
     def _compute_name(self):
