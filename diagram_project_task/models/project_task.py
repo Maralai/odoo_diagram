@@ -11,8 +11,13 @@ class ProjectTask(models.Model):
     def write(self, vals):
         if vals.get('diagram', False) and vals.get('save_diagram',False):
             del vals['save_diagram']
+            timezone = self._context.get('tz') or self.env.user.partner_id.tz or 'UTC'
+            self_tz = self.with_context(tz=timezone)
+            date = fields.Datetime.context_timestamp(self_tz, fields.Datetime.now())
+            diagram_name = _(f"{date.strftime('%Y-%m-%d %H:%M:%S')} - {self.name}")
             # Store the saved diagram as a record to future use
             created_diagram_ver = self.env["diagram.version"].create({
+                'name': diagram_name,
                 'diagram_xml': vals.get('diagram'),
                 'task_id' : self.id,
             })
@@ -27,4 +32,3 @@ class ProjectTask(models.Model):
     def update_show_load_diagram(self):
         '''Set field show_load_diagram to Flase to hide the button '''
         self.show_load_diagram = False
-
