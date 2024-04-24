@@ -5,7 +5,7 @@ class HelpdeskTicket(models.Model):
     _inherit = "helpdesk.ticket"
 
     diagram = fields.Char(string=_("Diagram"), copy=False)
-    diagram_version_id = fields.Many2one("diagram.version", string=_("Diagram Versions"), domain="[('task_id','=', id)]")
+    diagram_version_id = fields.Many2one("diagram.version", string=_("Diagram Versions"), domain="[('ticket_id','=', id)]")
     show_load_diagram = fields.Boolean()
 
     def write(self, vals):
@@ -14,7 +14,7 @@ class HelpdeskTicket(models.Model):
             # Store the saved diagram as a record to future use
             created_diagram_ver = self.env["diagram.version"].create({
                 'diagram_xml': vals.get('diagram'),
-                'task_id' : self.id,
+                'ticket_id' : self.id,
             })
         return super(HelpdeskTicket, self).write(vals)
 
