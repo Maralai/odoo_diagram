@@ -11,7 +11,6 @@
 	                    <field name="create_date" readonly="True" />
 	                    <field name="create_uid" readonly="True" />
 	                    <field name="diagram_xml" readonly="True" />
-	                    <field name="task_id" readonly="True" />
 	                </group>
 	        	</sheet>
 	        </form>
